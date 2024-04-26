@@ -9,47 +9,96 @@ import SwiftUI
 import SwiftData
 
 struct DetailsView: View {
-    private let name = "Champ Name"
-    private let birthdate = "Birthday"
+    @State private var name: String = ""
+    @State private var birthDate: Date? = nil
+    @State private var pickerDate = Date()
+    @State private var datePickerEverClicked: Bool = false
+    @State private var activateNavigationLink = false
+
+    private let title = "Happy Birthday!"
+    private let namePlaceholder = "Name"
+    private let birthDatePlaceholder = "Birthday"
+    private let birthDateCallToAction = "Birth Date"
+    private let buttonTitle = "Show birthday screen"
     private let picture = ""
     private var pictureURL: URL? { URL(string: picture) }
 
     var body: some View {
-        NavigationSplitView {
-
+        NavigationStack {
             Spacer()
-            VStack(alignment: .center) {
-                
-                Text(name)
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                
-                Text(birthdate)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                
-                AsyncImage(url: pictureURL) { phase in
-                    if let image = phase.image {
-                        Self.picture(image)
-                    } else if phase.error != nil {
-                        Self.picturePlaceholder
-                    } else {
-                        ProgressView()
-                            .frame(width: 100)
-                    }
-                }
+            VStack(alignment: .center, spacing: 24) {
 
-                NavigationLink {
-                    Text("\(name)'s Birthday!")
-                } label: {
-                    Text("Show birthday screen")
+                nameInput
+
+                dateInput
+
+                avatar
+
+                birthdayScreenButton
+                    .disabled(name.isEmpty || birthDate != nil)
+            }
+            Spacer()
+                .navigationTitle(title)
+        }
+    }
+
+    @ViewBuilder
+    private var nameInput: some View {
+        /*
+
+         YY_TODO: iOS 17 Bug: related to textfield becoming firstReponder when DatePicker is open.
+         -[RTIInputSystemClient remoteTextInputSessionWithID:performInputOperation:]  perform input operation requires a valid sessionID. inputModality = Keyboard, inputOperation = <null selector>, customInfoType = UIEmojiSearchOperations
+
+         */
+
+        TextField(namePlaceholder, text: $name)
+            .font(.headline)
+            .foregroundColor(.primary)
+            .multilineTextAlignment(.center)
+    }
+
+    @ViewBuilder
+    private var avatar: some View {
+        if pictureURL != nil {
+            AsyncImage(url: pictureURL) { phase in
+                if let image = phase.image {
+                    Self.picture(image)
+                } else if phase.error != nil {
+                    Self.picturePlaceholder
+                } else {
+                    ProgressView()
+                        .frame(width: 100)
                 }
             }
-            .padding(.leading, 8)
+        }
+        else {
+            Self.picturePlaceholder
+        }
+    }
 
+    @ViewBuilder
+    private var dateInput: some View {
+        let datePicker = DatePicker(birthDatePlaceholder, selection: $pickerDate, displayedComponents: .date)
+            .font(.subheadline)
+            .labelsHidden()
+
+        let content = HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
             Spacer()
-        } detail: {
-            Text("Happy Birthday!")
+            Text(birthDatePlaceholder)
+            datePicker
+            Spacer()
+        }
+
+        if datePickerEverClicked {
+            content
+        } else {
+            Button(action: {
+                datePickerEverClicked = true
+            }, label: {
+                Text(birthDateCallToAction)
+                    .font(.callout)
+                    .foregroundColor(.accentColor)
+            })
         }
     }
 
@@ -58,17 +107,33 @@ struct DetailsView: View {
         image
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .frame(width: 150, height: 150)
+            .frame(width: 100, height: 100)
             .clipShape(Circle())
     }
 
     @ViewBuilder
     static private var picturePlaceholder: some View {
-        Image(systemName: "photo")
+        Image(systemName: "face.dashed")
             .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 150, height: 150)
+            .frame(width: 100, height: 100)
             .clipShape(Circle())
+            .foregroundColor(.accentColor)
+            .shadow(radius: 5)
+    }
+
+    @ViewBuilder
+    private var birthdayScreenButton: some View {
+        NavigationLink(destination: {
+            birthdayScreen
+        }, label: {
+            Text(buttonTitle)
+                .font(.callout)
+                .foregroundColor(.accentColor)
+        })
+    }
+
+    private var birthdayScreen: some View {
+        Text("\(name)'s Birthday!")
     }
 }
 
