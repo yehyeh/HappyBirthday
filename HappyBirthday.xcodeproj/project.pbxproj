@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0D12024E2BDAB7A3004F1746 /* HappyBirthdayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D12024D2BDAB7A3004F1746 /* HappyBirthdayApp.swift */; };
 		0D1202502BDAB7A3004F1746 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D12024F2BDAB7A3004F1746 /* DetailsView.swift */; };
-		0D1202522BDAB7A3004F1746 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1202512BDAB7A3004F1746 /* Item.swift */; };
 		0D1202542BDAB7A5004F1746 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D1202532BDAB7A5004F1746 /* Assets.xcassets */; };
 		0D1202572BDAB7A5004F1746 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D1202562BDAB7A5004F1746 /* Preview Assets.xcassets */; };
 		0D1202612BDAB7A5004F1746 /* HappyBirthdayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1202602BDAB7A5004F1746 /* HappyBirthdayTests.swift */; };
@@ -38,7 +37,6 @@
 		0D12024A2BDAB7A3004F1746 /* HappyBirthday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyBirthday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D12024D2BDAB7A3004F1746 /* HappyBirthdayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyBirthdayApp.swift; sourceTree = "<group>"; };
 		0D12024F2BDAB7A3004F1746 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
-		0D1202512BDAB7A3004F1746 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		0D1202532BDAB7A5004F1746 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D1202562BDAB7A5004F1746 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0D12025C2BDAB7A5004F1746 /* HappyBirthdayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HappyBirthdayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				0D8C8F082BDABE8500CCD8D1 /* Details */,
-				0D1202512BDAB7A3004F1746 /* Item.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -325,7 +322,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D1202502BDAB7A3004F1746 /* DetailsView.swift in Sources */,
-				0D1202522BDAB7A3004F1746 /* Item.swift in Sources */,
 				0D12024E2BDAB7A3004F1746 /* HappyBirthdayApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

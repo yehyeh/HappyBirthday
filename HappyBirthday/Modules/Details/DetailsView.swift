@@ -11,6 +11,7 @@ import SwiftData
 struct DetailsView: View {
     @State private var name: String = ""
     @State private var birthDate: Date? = nil
+    @State private var birthDateTextDummy: String = ""
     @State private var pickerDate = Date()
     @State private var datePickerEverClicked: Bool = false
     @State private var activateNavigationLink = false
@@ -30,7 +31,11 @@ struct DetailsView: View {
 
                 nameInput
 
-                dateInput
+                if datePickerEverClicked {
+                    dateInput
+                } else {
+                    dateInput1
+                }
 
                 avatar
 
@@ -58,6 +63,17 @@ struct DetailsView: View {
     }
 
     @ViewBuilder
+    private var dateInput1: some View {
+        TextField(birthDatePlaceholder, text: $birthDateTextDummy)
+            .font(.headline)
+            .foregroundColor(.primary)
+            .multilineTextAlignment(.center)
+            .onTapGesture {
+                datePickerEverClicked = true
+            }
+    }
+
+    @ViewBuilder
     private var avatar: some View {
         if pictureURL != nil {
             AsyncImage(url: pictureURL) { phase in
@@ -82,23 +98,11 @@ struct DetailsView: View {
             .font(.subheadline)
             .labelsHidden()
 
-        let content = HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
+        HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
             Spacer()
             Text(birthDatePlaceholder)
             datePicker
             Spacer()
-        }
-
-        if datePickerEverClicked {
-            content
-        } else {
-            Button(action: {
-                datePickerEverClicked = true
-            }, label: {
-                Text(birthDateCallToAction)
-                    .font(.callout)
-                    .foregroundColor(.accentColor)
-            })
         }
     }
 
@@ -139,5 +143,4 @@ struct DetailsView: View {
 
 #Preview {
     DetailsView()
-        .modelContainer(for: Item.self, inMemory: true)
 }
