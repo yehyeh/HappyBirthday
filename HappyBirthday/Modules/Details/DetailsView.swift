@@ -13,7 +13,7 @@ struct DetailsView: View {
     @State private var birthDate: Date? = nil
     @State private var birthDateTextDummy: String = ""
     @State private var pickerDate = Date()
-    @State private var datePickerEverClicked: Bool = false
+    @State private var birthDateInputViewEverClicked: Bool = false
     @State private var activateNavigationLink = false
 
     private let title = "Happy Birthday!"
@@ -29,12 +29,12 @@ struct DetailsView: View {
             Spacer()
             VStack(alignment: .center, spacing: 24) {
 
-                nameInput
+                nameInputView
 
-                if datePickerEverClicked {
-                    dateInput
+                if birthDateInputViewEverClicked {
+                    birthDateInputView
                 } else {
-                    dateInput1
+                    birthDateInputPlaceHolder
                 }
 
                 avatar
@@ -48,7 +48,7 @@ struct DetailsView: View {
     }
 
     @ViewBuilder
-    private var nameInput: some View {
+    private var nameInputView: some View {
         /*
 
          YY_TODO: iOS 17 Bug: related to textfield becoming firstReponder when DatePicker is open.
@@ -63,13 +63,13 @@ struct DetailsView: View {
     }
 
     @ViewBuilder
-    private var dateInput1: some View {
+    private var birthDateInputPlaceHolder: some View {
         TextField(birthDatePlaceholder, text: $birthDateTextDummy)
             .font(.headline)
             .foregroundColor(.primary)
             .multilineTextAlignment(.center)
             .onTapGesture {
-                datePickerEverClicked = true
+                birthDateInputViewEverClicked = true
             }
     }
 
@@ -93,7 +93,7 @@ struct DetailsView: View {
     }
 
     @ViewBuilder
-    private var dateInput: some View {
+    private var birthDateInputView: some View {
         let datePicker = DatePicker(birthDatePlaceholder, selection: $pickerDate, displayedComponents: .date)
             .font(.subheadline)
             .labelsHidden()
