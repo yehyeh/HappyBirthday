@@ -14,6 +14,7 @@
 		0D1202612BDAB7A5004F1746 /* HappyBirthdayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1202602BDAB7A5004F1746 /* HappyBirthdayTests.swift */; };
 		0D12026B2BDAB7A5004F1746 /* HappyBirthdayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D12026A2BDAB7A5004F1746 /* HappyBirthdayUITests.swift */; };
 		0D12026D2BDAB7A5004F1746 /* HappyBirthdayUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D12026C2BDAB7A5004F1746 /* HappyBirthdayUITestsLaunchTests.swift */; };
+		0D8C8F0B2BDC7F2600CCD8D1 /* AvatarPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8C8F0A2BDC7F2600CCD8D1 /* AvatarPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		0D1202662BDAB7A5004F1746 /* HappyBirthdayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HappyBirthdayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D12026A2BDAB7A5004F1746 /* HappyBirthdayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyBirthdayUITests.swift; sourceTree = "<group>"; };
 		0D12026C2BDAB7A5004F1746 /* HappyBirthdayUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyBirthdayUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0D8C8F0A2BDC7F2600CCD8D1 /* AvatarPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 		0D8C8F002BDABC3600CCD8D1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				0D8C8F092BDC7F0A00CCD8D1 /* Avatar Picker */,
 				0D8C8F082BDABE8500CCD8D1 /* Details */,
 			);
 			path = Modules;
@@ -189,6 +192,14 @@
 				0D12024F2BDAB7A3004F1746 /* DetailsView.swift */,
 			);
 			path = Details;
+			sourceTree = "<group>";
+		};
+		0D8C8F092BDC7F0A00CCD8D1 /* Avatar Picker */ = {
+			isa = PBXGroup;
+			children = (
+				0D8C8F0A2BDC7F2600CCD8D1 /* AvatarPicker.swift */,
+			);
+			path = "Avatar Picker";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D1202502BDAB7A3004F1746 /* DetailsView.swift in Sources */,
+				0D8C8F0B2BDC7F2600CCD8D1 /* AvatarPicker.swift in Sources */,
 				0D12024E2BDAB7A3004F1746 /* HappyBirthdayApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

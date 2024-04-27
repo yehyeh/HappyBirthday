@@ -6,14 +6,15 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct DetailsView: View {
     @State private var name: String = ""
     @State private var birthDate: Date? = nil
     @State private var birthDateTextDummy: String = ""
+    @State private var pickerImage: UIImage = UIImage()
     @State private var pickerDate = Date()
     @State private var birthDateInputViewEverClicked: Bool = false
+    @State private var isPhotoPickerPresented: Bool = false
     @State private var activateNavigationLink = false
 
     private let title = "Happy Birthday!"
@@ -21,8 +22,6 @@ struct DetailsView: View {
     private let birthDatePlaceholder = "Birthday"
     private let birthDateCallToAction = "Birth Date"
     private let buttonTitle = "Show birthday screen"
-    private let picture = ""
-    private var pictureURL: URL? { URL(string: picture) }
 
     var body: some View {
         NavigationStack {
@@ -37,15 +36,23 @@ struct DetailsView: View {
                     birthDateInputPlaceHolder
                 }
 
-                avatar
+                avatarInputView
+                    .onTapGesture {
+                        isPhotoPickerPresented = true
+                    }
 
                 birthdayScreenButton
-                    .disabled(name.isEmpty || birthDate != nil)
+                    .disabled(name.isEmpty || birthDate != nil || !isPlaceholderPresented)
             }
             Spacer()
                 .navigationTitle(title)
+                .sheet(isPresented: $isPhotoPickerPresented) {
+                    AvatarPicker(selectedImage: $pickerImage)
+                }
         }
     }
+
+    private var isPlaceholderPresented: Bool { pickerImage.size.equalTo(.zero) }
 
     @ViewBuilder
     private var nameInputView: some View {
@@ -74,21 +81,11 @@ struct DetailsView: View {
     }
 
     @ViewBuilder
-    private var avatar: some View {
-        if pictureURL != nil {
-            AsyncImage(url: pictureURL) { phase in
-                if let image = phase.image {
-                    Self.picture(image)
-                } else if phase.error != nil {
-                    Self.picturePlaceholder
-                } else {
-                    ProgressView()
-                        .frame(width: 100)
-                }
-            }
-        }
-        else {
+    private var avatarInputView: some View {
+        if isPlaceholderPresented {
             Self.picturePlaceholder
+        } else {
+            Self.picture(Image(uiImage: pickerImage))
         }
     }
 
