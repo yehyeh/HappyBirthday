@@ -16,7 +16,6 @@ class DetailViewModel: ObservableObject {
     }
 
     @Published var disabledShowBirthdayScreen: Bool = false
-    @Published var birthDateSelected: Bool = false
     @Published var isPhotoPickerPresented: Bool = false
     @Published var birthDateTextDummy: String = ""
     @Published var kid = Kid()
@@ -50,7 +49,7 @@ class DetailViewModel: ObservableObject {
             }
         }
     }
-
+    var imagePickerSource: UIImagePickerController.SourceType = .photoLibrary
     var isAvatarPlaceholderPresented: Bool {
         guard let image = kid.image else { return true }
         return image.size.equalTo(.zero)
@@ -68,7 +67,6 @@ class DetailViewModel: ObservableObject {
         nameText = loadNameFromUserDefaults()
         if let birthDate = loadBirthDateFromUserDefaults() {
             pickerDate = birthDate
-            birthDateSelected = true
         }
         if let birthday = loadBirthDateFromUserDefaults() {
             pickerDate = birthday
@@ -79,11 +77,13 @@ class DetailViewModel: ObservableObject {
         updateInputState()
     }
 
-    func onUserTappedBirthDate() {
-        birthDateSelected = true
+    func onUserTappedTakePhoto() {
+        imagePickerSource = .camera
+        isPhotoPickerPresented = true
     }
 
     func onUserTappedAvatar() {
+        imagePickerSource = .photoLibrary
         isPhotoPickerPresented = true
     }
 

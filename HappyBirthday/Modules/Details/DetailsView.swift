@@ -27,7 +27,7 @@ struct DetailsView: View {
 
                 nameInputView
 
-                birthDateInputView
+                birthDatePicker
 
                 avatarInputView
 
@@ -36,7 +36,7 @@ struct DetailsView: View {
             Spacer()
                 .navigationTitle(Const.title)
                 .sheet(isPresented: $viewModel.isPhotoPickerPresented) {
-                    AvatarPicker(selectedImage: $viewModel.pickerImage)
+                    AvatarPicker(sourceType: viewModel.imagePickerSource, selectedImage: $viewModel.pickerImage)
                 }
         }
         .onAppear {
@@ -61,25 +61,6 @@ struct DetailsView: View {
     }
 
     // MARK: - Birthdate picker
-    @ViewBuilder
-    private var birthDateInputView: some View {
-        if viewModel.birthDateSelected {
-            birthDatePicker
-        } else {
-            birthDatePlaceHolder
-        }
-    }
-
-    private var birthDatePlaceHolder: some View {
-        TextField(Const.birthDatePlaceholder, text: $viewModel.birthDateTextDummy)
-            .font(.headline)
-            .foregroundColor(.primary)
-            .multilineTextAlignment(.center)
-            .onTapGesture {
-                viewModel.onUserTappedBirthDate()
-            }
-    }
-
     private var birthDatePicker: some View {
         let datePicker = DatePicker(Const.birthDatePlaceholder, selection: $viewModel.pickerDate, displayedComponents: .date)
             .font(.subheadline)
@@ -95,10 +76,15 @@ struct DetailsView: View {
     
     // MARK: - Avatar picker
     private var avatarInputView: some View {
-        avatarView
-            .onTapGesture {
-                viewModel.onUserTappedAvatar()
+        VStack {
+            avatarView
+                .onTapGesture {
+                    viewModel.onUserTappedAvatar()
+                }
+            Button("Take a Photo") {
+                viewModel.onUserTappedTakePhoto()
             }
+        }
     }
 
     @ViewBuilder
