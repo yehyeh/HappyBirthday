@@ -23,9 +23,7 @@ struct AvatarPicker: UIViewControllerRepresentable {
         return imagePicker
     }
 
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<AvatarPicker>) {
-
-    }
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<AvatarPicker>) { }
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self)

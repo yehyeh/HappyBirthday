@@ -8,53 +8,43 @@
 import SwiftUI
 
 struct DetailsView: View {
-    @State private var name: String = ""
-    @State private var birthDate: Date? = nil
-    @State private var birthDateTextDummy: String = ""
-    @State private var pickerImage: UIImage = UIImage()
-    @State private var pickerDate = Date()
-    @State private var birthDateInputViewEverClicked: Bool = false
-    @State private var isPhotoPickerPresented: Bool = false
-    @State private var activateNavigationLink = false
+    @StateObject var viewModel: DetailViewModel
 
-    private let title = "Happy Birthday!"
-    private let namePlaceholder = "Name"
-    private let birthDatePlaceholder = "Birthday"
-    private let birthDateCallToAction = "Birth Date"
-    private let buttonTitle = "Show birthday screen"
+    enum Const {
+        static let title = "Happy Birthday!"
+        static let namePlaceholder = "Name"
+        static let birthDatePlaceholder = "Birthday"
+        static let birthDateCallToAction = "Birth Date"
+        static let buttonTitle = "Show birthday screen"
+    }
 
     var body: some View {
+        let _ = Self._printChanges()
+
         NavigationStack {
             Spacer()
             VStack(alignment: .center, spacing: 24) {
 
                 nameInputView
 
-                if birthDateInputViewEverClicked {
-                    birthDateInputView
-                } else {
-                    birthDateInputPlaceHolder
-                }
+                birthDateInputView
 
                 avatarInputView
-                    .onTapGesture {
-                        isPhotoPickerPresented = true
-                    }
 
                 birthdayScreenButton
-                    .disabled(name.isEmpty || birthDate != nil || !isPlaceholderPresented)
             }
             Spacer()
-                .navigationTitle(title)
-                .sheet(isPresented: $isPhotoPickerPresented) {
-                    AvatarPicker(selectedImage: $pickerImage)
+                .navigationTitle(Const.title)
+                .sheet(isPresented: $viewModel.isPhotoPickerPresented) {
+                    AvatarPicker(selectedImage: $viewModel.pickerImage)
                 }
+        }
+        .onAppear {
+            viewModel.loadOnAppear()
         }
     }
 
-    private var isPlaceholderPresented: Bool { pickerImage.size.equalTo(.zero) }
-
-    @ViewBuilder
+    // MARK: - Name
     private var nameInputView: some View {
         /*
 
@@ -63,56 +53,71 @@ struct DetailsView: View {
 
          */
 
-        TextField(namePlaceholder, text: $name)
+        TextField(Const.namePlaceholder, text: $viewModel.nameText)
+            .textInputAutocapitalization(.words)
             .font(.headline)
             .foregroundColor(.primary)
             .multilineTextAlignment(.center)
     }
 
+    // MARK: - Birthdate picker
     @ViewBuilder
-    private var birthDateInputPlaceHolder: some View {
-        TextField(birthDatePlaceholder, text: $birthDateTextDummy)
+    private var birthDateInputView: some View {
+        if viewModel.birthDateSelected {
+            birthDatePicker
+        } else {
+            birthDatePlaceHolder
+        }
+    }
+
+    private var birthDatePlaceHolder: some View {
+        TextField(Const.birthDatePlaceholder, text: $viewModel.birthDateTextDummy)
             .font(.headline)
             .foregroundColor(.primary)
             .multilineTextAlignment(.center)
             .onTapGesture {
-                birthDateInputViewEverClicked = true
+                viewModel.onUserTappedBirthDate()
             }
     }
 
-    @ViewBuilder
-    private var avatarInputView: some View {
-        if isPlaceholderPresented {
-            Self.picturePlaceholder
-        } else {
-            Self.picture(Image(uiImage: pickerImage))
-        }
-    }
-
-    @ViewBuilder
-    private var birthDateInputView: some View {
-        let datePicker = DatePicker(birthDatePlaceholder, selection: $pickerDate, displayedComponents: .date)
+    private var birthDatePicker: some View {
+        let datePicker = DatePicker(Const.birthDatePlaceholder, selection: $viewModel.pickerDate, displayedComponents: .date)
             .font(.subheadline)
             .labelsHidden()
 
-        HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
+        return HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
             Spacer()
-            Text(birthDatePlaceholder)
+            Text(Const.birthDatePlaceholder)
             datePicker
             Spacer()
         }
     }
+    
+    // MARK: - Avatar picker
+    private var avatarInputView: some View {
+        avatarView
+            .onTapGesture {
+                viewModel.onUserTappedAvatar()
+            }
+    }
 
     @ViewBuilder
+    private var avatarView: some View {
+        if viewModel.isAvatarPlaceholderPresented {
+            Self.picturePlaceholder
+        } else {
+            Self.picture(Image(uiImage: viewModel.pickerImage))
+        }
+    }
+
     static private func picture(_ image: Image) -> some View {
         image
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .frame(width: 100, height: 100)
+            .frame(width: 150, height: 150)
             .clipShape(Circle())
     }
-
-    @ViewBuilder
+    
     static private var picturePlaceholder: some View {
         Image(systemName: "face.dashed")
             .resizable()
@@ -122,22 +127,25 @@ struct DetailsView: View {
             .shadow(radius: 5)
     }
 
+    // MARK: - Button
     @ViewBuilder
     private var birthdayScreenButton: some View {
         NavigationLink(destination: {
             birthdayScreen
         }, label: {
-            Text(buttonTitle)
+            Text(Const.buttonTitle)
                 .font(.callout)
                 .foregroundColor(.accentColor)
         })
+        .disabled(viewModel.disabledShowBirthdayScreen)
     }
 
+    // MARK: - Temp handler
     private var birthdayScreen: some View {
-        Text("\(name)'s Birthday!")
+        Text("\(viewModel.nameText)'s Birthday!")
     }
 }
 
 #Preview {
-    DetailsView()
+    DetailsView(viewModel: DetailViewModel())
 }

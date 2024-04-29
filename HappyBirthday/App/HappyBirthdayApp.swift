@@ -6,22 +6,12 @@
 //
 
 import SwiftUI
-import SwiftData
 
 @main
 struct HappyBirthdayApp: App {
-    var sharedModelContainer: ModelContainer = {
-        do {
-            return try ModelContainer()
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
     var body: some Scene {
         WindowGroup {
-            DetailsView()
+            DetailsView(viewModel: DetailViewModel())
         }
-        .modelContainer(sharedModelContainer)
     }
 }
