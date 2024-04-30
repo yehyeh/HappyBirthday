@@ -11,6 +11,17 @@ import SwiftUI
 
 class BirthdayViewController: UIViewController {
 
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var numericImageView: UIImageView!
+    @IBOutlet weak var headerTopLabel: UILabel!
+    @IBOutlet weak var headerBottomLabel: UILabel!
+
+    @IBAction func onAvatarTap(_ sender: Any) {
+    }
+
+    @IBAction func onCameraTap(_ sender: Any) {
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
