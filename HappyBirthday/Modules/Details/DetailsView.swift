@@ -126,9 +126,9 @@ struct DetailsView: View {
         .disabled(viewModel.disabledShowBirthdayScreen)
     }
 
-    // MARK: - Temp handler
+    // MARK: - Birthday screen
     private var birthdayScreen: some View {
-        Text("\(viewModel.nameText)'s Birthday!")
+        MyBirthdayViewController(baby: viewModel.baby)
     }
 }
 

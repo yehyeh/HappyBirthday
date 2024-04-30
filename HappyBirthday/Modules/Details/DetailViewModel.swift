@@ -18,11 +18,11 @@ class DetailViewModel: ObservableObject {
     @Published var disabledShowBirthdayScreen: Bool = false
     @Published var isPhotoPickerPresented: Bool = false
     @Published var birthDateTextDummy: String = ""
-    @Published var kid = Kid()
+    @Published var baby = Baby()
 
     @Published var nameText: String = "" {
         didSet {
-            kid.name = nameText
+            baby.name = nameText
             if inputState != .preloaded {
                 saveNameToUserDefaults(nameText)
                 updateInputState()
@@ -32,7 +32,7 @@ class DetailViewModel: ObservableObject {
 
     @Published var pickerImage: UIImage = UIImage() {
         didSet {
-            kid.image = pickerImage
+            baby.image = pickerImage
             if inputState != .preloaded {
                 saveImageToUserDefaults(pickerImage)
                 updateInputState()
@@ -42,7 +42,7 @@ class DetailViewModel: ObservableObject {
 
     @Published var pickerDate = Date() {
         didSet {
-            kid.birthDate = pickerDate
+            baby.birthDate = pickerDate
             if inputState != .preloaded {
                 saveBirthDateToUserDefaults(pickerDate)
                 updateInputState()
@@ -51,7 +51,7 @@ class DetailViewModel: ObservableObject {
     }
     var imagePickerSource: UIImagePickerController.SourceType = .photoLibrary
     var isAvatarPlaceholderPresented: Bool {
-        guard let image = kid.image else { return true }
+        guard let image = baby.image else { return true }
         return image.size.equalTo(.zero)
     }
 
@@ -88,7 +88,7 @@ class DetailViewModel: ObservableObject {
     }
 
     private func updateInputState() {
-        if kid.name.isEmpty || kid.birthDate == nil || isAvatarPlaceholderPresented {
+        if baby.name.isEmpty || baby.birthDate == nil || isAvatarPlaceholderPresented {
             inputState = .missing
         } else {
             inputState = .ready
