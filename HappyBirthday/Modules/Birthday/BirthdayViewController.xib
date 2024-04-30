@@ -18,9 +18,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="background.elephant" translatesAutoresizingMaskIntoConstraints="NO" id="1XA-jz-xJH">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="yiv-dD-yyc">
                     <rect key="frame" x="48" y="40" width="224" height="181.5"/>
                     <subviews>
@@ -52,17 +49,75 @@
                         </label>
                     </subviews>
                 </stackView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="background.elephant" translatesAutoresizingMaskIntoConstraints="NO" id="1XA-jz-xJH">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a4b-lM-fAJ">
+                    <rect key="frame" x="40.5" y="389" width="239" height="179"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo.nanit" translatesAutoresizingMaskIntoConstraints="NO" id="e8M-eo-ICN">
+                            <rect key="frame" x="91.5" y="15" width="56.5" height="20"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9s-XW-4bk">
+                            <rect key="frame" x="35.5" y="88" width="168.5" height="38"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="filled" image="btn_share" imagePlacement="trailing" title="Share the news" imagePadding="3" cornerStyle="capsule" titleAlignment="center">
+                                <backgroundConfiguration key="background">
+                                    <color key="backgroundColor" red="0.87843137979999997" green="0.50588238240000005" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </backgroundConfiguration>
+                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </buttonConfiguration>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="g9s-XW-4bk" firstAttribute="width" secondItem="a4b-lM-fAJ" secondAttribute="width" multiplier="0.704167" id="2rA-B3-ynV"/>
+                        <constraint firstItem="e8M-eo-ICN" firstAttribute="centerX" secondItem="a4b-lM-fAJ" secondAttribute="centerX" id="MKh-el-PGw"/>
+                        <constraint firstItem="g9s-XW-4bk" firstAttribute="top" secondItem="e8M-eo-ICN" secondAttribute="bottom" constant="53" id="Ttl-Pu-NP9"/>
+                        <constraint firstItem="g9s-XW-4bk" firstAttribute="centerX" secondItem="a4b-lM-fAJ" secondAttribute="centerX" id="YIE-Uj-5Rw"/>
+                        <constraint firstAttribute="bottom" secondItem="g9s-XW-4bk" secondAttribute="bottom" constant="53" id="fwT-Ie-PMc"/>
+                        <constraint firstItem="e8M-eo-ICN" firstAttribute="top" secondItem="a4b-lM-fAJ" secondAttribute="top" constant="15" id="tM2-hD-97G"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" role="cancel" translatesAutoresizingMaskIntoConstraints="NO" id="JQx-R1-dM1" userLabel="BackButton">
+                    <rect key="frame" x="16" y="36" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="D9W-5c-zga"/>
+                        <constraint firstAttribute="height" constant="24" id="kRl-Fz-eUS"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Button" image="btn_back"/>
+                </button>
+                <button opaque="NO" clipsSubviews="YES" contentMode="center" horizontalCompressionResistancePriority="500" verticalCompressionResistancePriority="500" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0BV-n2-L2J" userLabel="AvatarButton">
+                    <rect key="frame" x="86.5" y="241.5" width="147.5" height="147.5"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="0BV-n2-L2J" secondAttribute="height" id="ePP-Oo-DV4"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="placeholder.yellow.fill">
+                        <backgroundConfiguration key="background"/>
+                    </buttonConfiguration>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="a4b-lM-fAJ" firstAttribute="top" secondItem="0BV-n2-L2J" secondAttribute="bottom" id="3je-rn-SvP"/>
                 <constraint firstItem="1XA-jz-xJH" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="7SE-xb-wa4"/>
+                <constraint firstItem="a4b-lM-fAJ" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="86I-gc-tbI"/>
+                <constraint firstItem="JQx-R1-dM1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="8wu-QI-tkO"/>
                 <constraint firstItem="1xi-H1-Y31" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="263/375" id="G4T-Rn-0JP"/>
+                <constraint firstItem="0BV-n2-L2J" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yiv-dD-yyc" secondAttribute="bottom" constant="20" id="KKS-pV-FT2"/>
                 <constraint firstItem="yiv-dD-yyc" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Mat-hq-J7h"/>
-                <constraint firstItem="1XA-jz-xJH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="QLq-yE-1KC"/>
+                <constraint firstItem="1XA-jz-xJH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-20" id="QLq-yE-1KC"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0BV-n2-L2J" secondAttribute="trailing" constant="50" id="Y40-6t-iYK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="1XA-jz-xJH" secondAttribute="bottom" id="blE-dy-c64"/>
                 <constraint firstItem="1XA-jz-xJH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="eNN-zC-PE4"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="a4b-lM-fAJ" secondAttribute="bottom" id="pRc-CT-ee7"/>
                 <constraint firstItem="yiv-dD-yyc" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="ric-v7-4Or"/>
+                <constraint firstItem="JQx-R1-dM1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="ubN-P7-cVZ"/>
+                <constraint firstItem="0BV-n2-L2J" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="wcG-QV-Emj"/>
             </constraints>
             <point key="canvasLocation" x="43.125" y="20.070422535211268"/>
         </view>
@@ -70,6 +125,10 @@
     <resources>
         <image name="0" width="67" height="92"/>
         <image name="background.elephant" width="375" height="667"/>
+        <image name="btn_back" width="24" height="24"/>
+        <image name="btn_share" width="24" height="24"/>
+        <image name="logo.nanit" width="56.5" height="20"/>
+        <image name="placeholder.yellow.fill" width="222" height="222.5"/>
         <image name="swirls.left" width="51.5" height="45"/>
         <image name="swirls.right" width="51.5" height="45"/>
         <systemColor name="systemBackgroundColor">
