@@ -129,6 +129,7 @@ struct DetailsView: View {
     // MARK: - Birthday screen
     private var birthdayScreen: some View {
         MyBirthdayViewController(baby: viewModel.baby)
+            .navigationBarBackButtonHidden(true)
     }
 }
 

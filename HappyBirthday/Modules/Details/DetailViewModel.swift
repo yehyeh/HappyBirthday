@@ -15,10 +15,9 @@ class DetailViewModel: ObservableObject {
         case ready
     }
 
-    @Published var disabledShowBirthdayScreen: Bool = false
-    @Published var isPhotoPickerPresented: Bool = false
-    @Published var birthDateTextDummy: String = ""
-    @Published var baby = Baby()
+    var disabledShowBirthdayScreen: Bool = false
+    var isPhotoPickerPresented: Bool = false
+    /*private*/ var baby = Baby()
 
     @Published var nameText: String = "" {
         didSet {

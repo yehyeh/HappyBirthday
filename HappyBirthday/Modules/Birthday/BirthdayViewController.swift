@@ -11,12 +11,16 @@ import SwiftUI
 
 class BirthdayViewController: UIViewController {
 
+    @IBOutlet weak var avatarImageVIew: UIImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var numericImageView: UIImageView!
     @IBOutlet weak var headerTopLabel: UILabel!
     @IBOutlet weak var headerBottomLabel: UILabel!
 
+    @IBAction func onBackTap(_ sender: Any) {
+    }
     @IBAction func onAvatarTap(_ sender: Any) {
+        
     }
 
     @IBAction func onCameraTap(_ sender: Any) {
@@ -26,6 +30,13 @@ class BirthdayViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
     }
 }
 
