@@ -45,7 +45,9 @@ struct MyBirthdayViewController: UIViewControllerRepresentable {
     var baby: Baby
 
     func makeUIViewController(context: Context) -> UIViewControllerType {
-        BirthdayViewController(nibName: "BirthdayViewController", bundle: nil)
+        let vc = BirthdayViewController(nibName: "BirthdayViewController", bundle: nil)
+//        vc.viewModel
+        return vc
     }
 
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {

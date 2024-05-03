@@ -19,6 +19,11 @@
 		0D8C8F0B2BDC7F2600CCD8D1 /* AvatarPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8C8F0A2BDC7F2600CCD8D1 /* AvatarPicker.swift */; };
 		0D8C8F0D2BDC915D00CCD8D1 /* Baby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8C8F0C2BDC915D00CCD8D1 /* Baby.swift */; };
 		0D8C8F0F2BDD452000CCD8D1 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8C8F0E2BDD452000CCD8D1 /* DetailViewModel.swift */; };
+		0DB2F1212BE5004500347F87 /* BirthdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2F1202BE5004500347F87 /* BirthdayView.swift */; };
+		0DB2F1232BE500F900347F87 /* BirthdayTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2F1222BE500F900347F87 /* BirthdayTheme.swift */; };
+		0DB2F1252BE501D900347F87 /* BirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2F1242BE501D900347F87 /* BirthdayViewModel.swift */; };
+		0DB2F1292BE528A800347F87 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2F1282BE528A800347F87 /* CapsuleButtonStyle.swift */; };
+		0DB2F12C2BE52A6900347F87 /* Color_Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2F12B2BE52A6900347F87 /* Color_Ex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +59,11 @@
 		0D8C8F0A2BDC7F2600CCD8D1 /* AvatarPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPicker.swift; sourceTree = "<group>"; };
 		0D8C8F0C2BDC915D00CCD8D1 /* Baby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Baby.swift; sourceTree = "<group>"; };
 		0D8C8F0E2BDD452000CCD8D1 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		0DB2F1202BE5004500347F87 /* BirthdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayView.swift; sourceTree = "<group>"; };
+		0DB2F1222BE500F900347F87 /* BirthdayTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayTheme.swift; sourceTree = "<group>"; };
+		0DB2F1242BE501D900347F87 /* BirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewModel.swift; sourceTree = "<group>"; };
+		0DB2F1282BE528A800347F87 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
+		0DB2F12B2BE52A6900347F87 /* Color_Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color_Ex.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,13 +147,13 @@
 			path = HappyBirthdayUITests;
 			sourceTree = "<group>";
 		};
-		0D2A6BC92BE0546400189E1B /* Birthday */ = {
+		0D2A6BC92BE0546400189E1B /* BirthdayNib */ = {
 			isa = PBXGroup;
 			children = (
 				0D2A6BCC2BE055AB00189E1B /* BirthdayViewController.swift */,
 				0D2A6BCD2BE055AB00189E1B /* BirthdayViewController.xib */,
 			);
-			path = Birthday;
+			path = BirthdayNib;
 			sourceTree = "<group>";
 		};
 		0D8C8EFC2BDABAA100CCD8D1 /* App */ = {
@@ -157,6 +167,7 @@
 		0D8C8EFD2BDABB0300CCD8D1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				0DB2F1272BE5287B00347F87 /* Subviews */,
 				0D8C8EFF2BDABB2C00CCD8D1 /* Model */,
 				0D8C8F012BDABC4200CCD8D1 /* Service */,
 				0D8C8F022BDABCA800CCD8D1 /* Utilities */,
@@ -177,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				0D8C8F0C2BDC915D00CCD8D1 /* Baby.swift */,
+				0DB2F1222BE500F900347F87 /* BirthdayTheme.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -184,7 +196,8 @@
 		0D8C8F002BDABC3600CCD8D1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				0D2A6BC92BE0546400189E1B /* Birthday */,
+				0DB2F11F2BE5002800347F87 /* Birthday */,
+				0D2A6BC92BE0546400189E1B /* BirthdayNib */,
 				0D8C8F092BDC7F0A00CCD8D1 /* Avatar Picker */,
 				0D8C8F082BDABE8500CCD8D1 /* Details */,
 			);
@@ -201,6 +214,7 @@
 		0D8C8F022BDABCA800CCD8D1 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				0DB2F12A2BE52A5200347F87 /* Extensions */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -220,6 +234,39 @@
 				0D8C8F0A2BDC7F2600CCD8D1 /* AvatarPicker.swift */,
 			);
 			path = "Avatar Picker";
+			sourceTree = "<group>";
+		};
+		0DB2F11F2BE5002800347F87 /* Birthday */ = {
+			isa = PBXGroup;
+			children = (
+				0DB2F1202BE5004500347F87 /* BirthdayView.swift */,
+				0DB2F1242BE501D900347F87 /* BirthdayViewModel.swift */,
+			);
+			path = Birthday;
+			sourceTree = "<group>";
+		};
+		0DB2F1262BE5285300347F87 /* Capsule Button */ = {
+			isa = PBXGroup;
+			children = (
+				0DB2F1282BE528A800347F87 /* CapsuleButtonStyle.swift */,
+			);
+			path = "Capsule Button";
+			sourceTree = "<group>";
+		};
+		0DB2F1272BE5287B00347F87 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				0DB2F1262BE5285300347F87 /* Capsule Button */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		0DB2F12A2BE52A5200347F87 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0DB2F12B2BE52A6900347F87 /* Color_Ex.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,11 +400,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DB2F1232BE500F900347F87 /* BirthdayTheme.swift in Sources */,
 				0D1202502BDAB7A3004F1746 /* DetailsView.swift in Sources */,
+				0DB2F1212BE5004500347F87 /* BirthdayView.swift in Sources */,
 				0D8C8F0B2BDC7F2600CCD8D1 /* AvatarPicker.swift in Sources */,
 				0D12024E2BDAB7A3004F1746 /* HappyBirthdayApp.swift in Sources */,
+				0DB2F1292BE528A800347F87 /* CapsuleButtonStyle.swift in Sources */,
 				0D8C8F0F2BDD452000CCD8D1 /* DetailViewModel.swift in Sources */,
+				0DB2F1252BE501D900347F87 /* BirthdayViewModel.swift in Sources */,
 				0D8C8F0D2BDC915D00CCD8D1 /* Baby.swift in Sources */,
+				0DB2F12C2BE52A6900347F87 /* Color_Ex.swift in Sources */,
 				0D2A6BCF2BE055AB00189E1B /* BirthdayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
