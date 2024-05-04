@@ -12,7 +12,7 @@ struct DetailsView: View {
 
     enum Const {
         static let title = "Happy Birthday!"
-        static let namePlaceholder = "Name"
+        static let namePlaceholder = "Baby Name"
         static let birthDatePlaceholder = "Birthday"
         static let birthDateCallToAction = "Birth Date"
         static let buttonTitle = "Show birthday screen"
@@ -116,6 +116,7 @@ struct DetailsView: View {
     // MARK: - Button
     @ViewBuilder
     private var birthdayScreenButton: some View {
+
         NavigationLink(destination: {
             birthdayScreen
         }, label: {
@@ -128,8 +129,7 @@ struct DetailsView: View {
 
     // MARK: - Birthday screen
     private var birthdayScreen: some View {
-        BirthdayView(viewModel: BirthdayViewModel())
-//        MyBirthdayViewController(baby: viewModel.baby)
+        BirthdayView(viewModel: BirthdayViewModel(baby: viewModel.baby))
             .navigationBarBackButtonHidden(true)
     }
 }
