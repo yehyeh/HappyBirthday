@@ -8,8 +8,9 @@
 import SwiftUI
 
 class BirthdayViewModel: ObservableObject  {
-    let baby: Baby
     private let theme: BirthdayThemable = BirthdayViewModel.randomTheme
+    private(set) var imagePickerSource: UIImagePickerController.SourceType = .photoLibrary
+    let baby: Baby
     var headerTopText: String { "Today \(baby.name) is" + zeroMonthsHeaderTopTextHandler }
     var headerLeftImagePath: String { "swirls.left" }
     var headerAgeImagePath: String { Self.numericImagePath(birthdayCalculation.amount) }
@@ -20,25 +21,24 @@ class BirthdayViewModel: ObservableObject  {
     var shareButtonText: String { "Share the news" }
     var logoImagePath: String { "logo.nanit" }
     var backButtonImagePath: String { "button.back" }
-    
-    @Environment(\.dismiss) private var dismiss
+
+    // yy_TODO: enums:
+    @Published var isPhotoPickerPresented: Bool = false
+    @Published var isShareViewPresented: Bool = false
 
     func onShareTapped() {
+        isShareViewPresented = true
     }
 
     func onAvatarTapped() {
-    }
-
-    func onBackTapped() {
-        // yy_TODO: add back gesture
-        dismiss()
+        imagePickerSource = .photoLibrary
+        isPhotoPickerPresented = true
     }
 
     var backgroundColor: Color { theme.backgroundColor }
 
-    var backgroundImagePath: String { theme.backgroundImagePath }
+    var foregroundImagePath: String { theme.foregroundImagePath }
     
-        /// yy_TODO: 1. unify bundle nil/.main, 2. replace Image with data avoid model knowing UI
     var avatarImage: Image {
         guard let image = baby.image else {
             return Image(theme.avatarPlaceholderImagePath, bundle: nil)

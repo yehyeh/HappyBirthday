@@ -9,34 +9,45 @@ import SwiftUI
 
 struct BirthdayView: View {
     @StateObject var viewModel: BirthdayViewModel
+    @Binding var pickerImage: UIImage
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
-        GeometryReader { proxy in
-            ZStack(alignment: .top) {
-                backgroundView
+        ZStack {
+            backgroundView
 
-                forgroundImage
+            avatarImage
+                .padding(.horizontal, 50)
 
-                VStack {
-                    headerView
-                        .padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0))
-                        .frame(maxWidth: proxy.size.width * 263/375, maxHeight: .infinity, alignment: .top)
+            foregroundImage
 
-                    Spacer(minLength: 20)
-                    
-                    avatarImage
-
-                    footerView
-                }
+            VStack {
+                headerView
+                    .padding(.horizontal, 50)
+                Spacer()
+                footerView
             }
-            .frame(width: proxy.size.width)
-        }
-        .overlay(alignment: .topLeading) {
+
             backButton
-                .position(x: 16, y: 16)
+                //yy_TODO: detect extra 20 insets
+                .position(x: 36, y:16)//16,16
+        }
+        .safeAreaPadding(.all)
+        .toolbar(.hidden)
+        .sheet(isPresented: $viewModel.isPhotoPickerPresented) {
+            AvatarPicker(sourceType: viewModel.imagePickerSource,
+                         selectedImage: $pickerImage)
         }
     }
-    
+
+    private var foregroundImage: some View {
+        Image(viewModel.foregroundImagePath)
+            .resizable()
+            .ignoresSafeArea(.all)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .aspectRatio(contentMode: .fill)
+    }
+
     private var backgroundView: some View {
         viewModel.backgroundColor
             .ignoresSafeArea(.all)
@@ -50,13 +61,15 @@ struct BirthdayView: View {
                 .foregroundColor(Color(hex: "394562"))
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
 
             HStack(spacing: 22) {
                 Image(viewModel.headerLeftImagePath)
                 Image(viewModel.headerAgeImagePath)
                 Image(viewModel.headerRightImagePath)
             }
-            .padding(EdgeInsets(top: 13, leading: 0, bottom: 14, trailing: 0))
+            .padding(.top, 13)
+            .padding(.bottom, 14)
 
             Text(viewModel.headerBottomText.uppercased())
                 .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
@@ -68,26 +81,22 @@ struct BirthdayView: View {
     private var footerView: some View {
         VStack {
             logoImage
-                .padding(EdgeInsets(top: 15, leading: 0, bottom: 53, trailing: 0))
+                .padding(.top, 15)
+                .padding(.bottom, 53)
             shareButton
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 53, trailing: 0))
+                .padding(.bottom, 53)
         }
     }
 
     private var avatarImage: some View {
-        VStack {
-            Spacer()
-
-            Button {
-                viewModel.onAvatarTapped()
-            } label: {
-                viewModel.avatarImage
-                    .frame(maxWidth: .some(225), maxHeight: .some(225), alignment: .center)
-                    .scaledToFit()
-            }
-            .clipShape(Circle())
-            
-            Spacer()
+        Button {
+            viewModel.onAvatarTapped()
+        } label: {
+            viewModel.avatarImage
+                .resizable()
+//                .scaledToFit()
+                .aspectRatio(contentMode: .fit)
+                .clipShape(Circle())
         }
     }
 
@@ -102,16 +111,9 @@ struct BirthdayView: View {
         }
     }
 
-    private var forgroundImage: some View {
-        Image(viewModel.backgroundImagePath)
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .ignoresSafeArea(.all)
-    }
-
     private var backButton: some View {
         Button {
-            viewModel.onBackTapped()
+            dismiss()
         } label: {
             Image(viewModel.backButtonImagePath, bundle: nil)
         }
@@ -119,6 +121,7 @@ struct BirthdayView: View {
 }
 
 #Preview {
+    @State var image = UIImage()
     let vm = BirthdayViewModel(baby: Baby(birthDate: Date(), name: "Cristiano Ronaldo Jr."))
-    return BirthdayView(viewModel: vm)
+    return BirthdayView(viewModel: vm, pickerImage: $image)
 }

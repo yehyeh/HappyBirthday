@@ -9,7 +9,7 @@ import SwiftUI
 
 protocol BirthdayThemable {
     var backgroundColor: Color { get }
-    var backgroundImagePath: String { get }
+    var foregroundImagePath: String { get }
     var avatarPlaceholderImagePath: String { get }
     var cameraImagePath: String { get }
 }
@@ -41,7 +41,7 @@ enum BirthdayTheme: BirthdayThemable {
         }
     }
 
-    var backgroundImagePath: String {
+    var foregroundImagePath: String {
         switch self {
             case .yellow:
                 return "background.elephant"

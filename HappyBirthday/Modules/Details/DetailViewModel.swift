@@ -15,14 +15,27 @@ class DetailViewModel: ObservableObject {
         case ready
     }
 
-    var disabledShowBirthdayScreen: Bool = false
-    var isPhotoPickerPresented: Bool = false
-    /*private*/ var baby = Baby()
+    private var defaults = UserDefaults.standard
+    private var inputState: InputState = .preloaded {
+        didSet {
+            disabledShowBirthdayScreen = inputState != .ready
+        }
+    }
+    private(set) var imagePickerSource: UIImagePickerController.SourceType = .photoLibrary
+    private(set) var disabledShowBirthdayScreen: Bool = false
+    private(set) var baby = Baby()
+    
+    @Published var isPhotoPickerPresented: Bool = false
+    var isAvatarPlaceholderPresented: Bool {
+        guard let image = baby.image else { return true }
+        return image.size.equalTo(.zero)
+    }
 
     @Published var nameText: String = "" {
         didSet {
             baby.name = nameText
             if inputState != .preloaded {
+                // TODO: debounce, binding
                 saveNameToUserDefaults(nameText)
                 updateInputState()
             }
@@ -48,19 +61,6 @@ class DetailViewModel: ObservableObject {
             }
         }
     }
-    var imagePickerSource: UIImagePickerController.SourceType = .photoLibrary
-    var isAvatarPlaceholderPresented: Bool {
-        guard let image = baby.image else { return true }
-        return image.size.equalTo(.zero)
-    }
-
-    private var inputState: InputState = .preloaded {
-        didSet {
-            disabledShowBirthdayScreen = inputState != .ready
-        }
-    }
-
-    private var defaults = UserDefaults.standard
 
     func loadOnAppear() {
         nameText = loadNameFromUserDefaults()
@@ -76,18 +76,18 @@ class DetailViewModel: ObservableObject {
         updateInputState()
     }
 
-    func onUserTappedTakePhoto() {
+    func onCameraTapped() {
         imagePickerSource = .camera
         isPhotoPickerPresented = true
     }
 
-    func onUserTappedAvatar() {
+    func onAvatarTapped() {
         imagePickerSource = .photoLibrary
         isPhotoPickerPresented = true
     }
 
     private func updateInputState() {
-        if baby.name.isEmpty || baby.birthDate == nil || isAvatarPlaceholderPresented {
+        if baby.name.isEmpty || baby.birthDate == nil {
             inputState = .missing
         } else {
             inputState = .ready

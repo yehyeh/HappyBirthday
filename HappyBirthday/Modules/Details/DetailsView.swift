@@ -22,8 +22,9 @@ struct DetailsView: View {
         let _ = Self._printChanges()
 
         NavigationStack {
-            Spacer()
             VStack(alignment: .center, spacing: 24) {
+
+                Spacer()
 
                 nameInputView
 
@@ -32,12 +33,14 @@ struct DetailsView: View {
                 avatarInputView
 
                 birthdayScreenButton
+
+                Spacer()
             }
-            Spacer()
-                .navigationTitle(Const.title)
-                .sheet(isPresented: $viewModel.isPhotoPickerPresented) {
-                    AvatarPicker(sourceType: viewModel.imagePickerSource, selectedImage: $viewModel.pickerImage)
-                }
+            .navigationTitle(Const.title)
+            .sheet(isPresented: $viewModel.isPhotoPickerPresented) {
+                AvatarPicker(sourceType: viewModel.imagePickerSource,
+                             selectedImage: $viewModel.pickerImage)
+            }
         }
         .onAppear {
             viewModel.loadOnAppear()
@@ -79,10 +82,10 @@ struct DetailsView: View {
         VStack {
             avatarView
                 .onTapGesture {
-                    viewModel.onUserTappedAvatar()
+                    viewModel.onAvatarTapped()
                 }
             Button("Take a Photo") {
-                viewModel.onUserTappedTakePhoto()
+                viewModel.onCameraTapped()
             }
         }
     }
@@ -114,9 +117,7 @@ struct DetailsView: View {
     }
 
     // MARK: - Button
-    @ViewBuilder
     private var birthdayScreenButton: some View {
-
         NavigationLink(destination: {
             birthdayScreen
         }, label: {
@@ -129,8 +130,8 @@ struct DetailsView: View {
 
     // MARK: - Birthday screen
     private var birthdayScreen: some View {
-        BirthdayView(viewModel: BirthdayViewModel(baby: viewModel.baby))
-            .navigationBarBackButtonHidden(true)
+        BirthdayView(viewModel: BirthdayViewModel(baby: viewModel.baby),
+                     pickerImage: $viewModel.pickerImage)
     }
 }
 

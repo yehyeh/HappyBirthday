@@ -14,8 +14,6 @@
 		0D1202612BDAB7A5004F1746 /* HappyBirthdayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1202602BDAB7A5004F1746 /* HappyBirthdayTests.swift */; };
 		0D12026B2BDAB7A5004F1746 /* HappyBirthdayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D12026A2BDAB7A5004F1746 /* HappyBirthdayUITests.swift */; };
 		0D12026D2BDAB7A5004F1746 /* HappyBirthdayUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D12026C2BDAB7A5004F1746 /* HappyBirthdayUITestsLaunchTests.swift */; };
-		0D2A6BCE2BE055AB00189E1B /* BirthdayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D2A6BCD2BE055AB00189E1B /* BirthdayViewController.xib */; };
-		0D2A6BCF2BE055AB00189E1B /* BirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2A6BCC2BE055AB00189E1B /* BirthdayViewController.swift */; };
 		0D8C8F0B2BDC7F2600CCD8D1 /* AvatarPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8C8F0A2BDC7F2600CCD8D1 /* AvatarPicker.swift */; };
 		0D8C8F0D2BDC915D00CCD8D1 /* Baby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8C8F0C2BDC915D00CCD8D1 /* Baby.swift */; };
 		0D8C8F0F2BDD452000CCD8D1 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8C8F0E2BDD452000CCD8D1 /* DetailViewModel.swift */; };
@@ -54,11 +52,10 @@
 		0D1202662BDAB7A5004F1746 /* HappyBirthdayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HappyBirthdayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D12026A2BDAB7A5004F1746 /* HappyBirthdayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyBirthdayUITests.swift; sourceTree = "<group>"; };
 		0D12026C2BDAB7A5004F1746 /* HappyBirthdayUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyBirthdayUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		0D2A6BCC2BE055AB00189E1B /* BirthdayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewController.swift; sourceTree = "<group>"; };
-		0D2A6BCD2BE055AB00189E1B /* BirthdayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BirthdayViewController.xib; sourceTree = "<group>"; };
 		0D8C8F0A2BDC7F2600CCD8D1 /* AvatarPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPicker.swift; sourceTree = "<group>"; };
 		0D8C8F0C2BDC915D00CCD8D1 /* Baby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Baby.swift; sourceTree = "<group>"; };
 		0D8C8F0E2BDD452000CCD8D1 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		0D9A25102BE6F59D00523D56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0DB2F1202BE5004500347F87 /* BirthdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayView.swift; sourceTree = "<group>"; };
 		0DB2F1222BE500F900347F87 /* BirthdayTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayTheme.swift; sourceTree = "<group>"; };
 		0DB2F1242BE501D900347F87 /* BirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewModel.swift; sourceTree = "<group>"; };
@@ -114,6 +111,7 @@
 		0D12024C2BDAB7A3004F1746 /* HappyBirthday */ = {
 			isa = PBXGroup;
 			children = (
+				0D9A25102BE6F59D00523D56 /* Info.plist */,
 				0D8C8F002BDABC3600CCD8D1 /* Modules */,
 				0D8C8EFD2BDABB0300CCD8D1 /* Common */,
 				0D8C8EFC2BDABAA100CCD8D1 /* App */,
@@ -147,15 +145,6 @@
 			path = HappyBirthdayUITests;
 			sourceTree = "<group>";
 		};
-		0D2A6BC92BE0546400189E1B /* BirthdayNib */ = {
-			isa = PBXGroup;
-			children = (
-				0D2A6BCC2BE055AB00189E1B /* BirthdayViewController.swift */,
-				0D2A6BCD2BE055AB00189E1B /* BirthdayViewController.xib */,
-			);
-			path = BirthdayNib;
-			sourceTree = "<group>";
-		};
 		0D8C8EFC2BDABAA100CCD8D1 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,7 +158,6 @@
 			children = (
 				0DB2F1272BE5287B00347F87 /* Subviews */,
 				0D8C8EFF2BDABB2C00CCD8D1 /* Model */,
-				0D8C8F012BDABC4200CCD8D1 /* Service */,
 				0D8C8F022BDABCA800CCD8D1 /* Utilities */,
 				0D8C8EFE2BDABB1C00CCD8D1 /* Assets */,
 			);
@@ -196,19 +184,11 @@
 		0D8C8F002BDABC3600CCD8D1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				0DB2F11F2BE5002800347F87 /* Birthday */,
-				0D2A6BC92BE0546400189E1B /* BirthdayNib */,
-				0D8C8F092BDC7F0A00CCD8D1 /* Avatar Picker */,
 				0D8C8F082BDABE8500CCD8D1 /* Details */,
+				0DB2F11F2BE5002800347F87 /* Birthday */,
+				0D8C8F092BDC7F0A00CCD8D1 /* Avatar Picker */,
 			);
 			path = Modules;
-			sourceTree = "<group>";
-		};
-		0D8C8F012BDABC4200CCD8D1 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Service;
 			sourceTree = "<group>";
 		};
 		0D8C8F022BDABCA800CCD8D1 /* Utilities */ = {
@@ -375,7 +355,6 @@
 			files = (
 				0D1202572BDAB7A5004F1746 /* Preview Assets.xcassets in Resources */,
 				0D1202542BDAB7A5004F1746 /* Assets.xcassets in Resources */,
-				0D2A6BCE2BE055AB00189E1B /* BirthdayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,7 +389,6 @@
 				0DB2F1252BE501D900347F87 /* BirthdayViewModel.swift in Sources */,
 				0D8C8F0D2BDC915D00CCD8D1 /* Baby.swift in Sources */,
 				0DB2F12C2BE52A6900347F87 /* Color_Ex.swift in Sources */,
-				0D2A6BCF2BE055AB00189E1B /* BirthdayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,7 +477,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -556,7 +534,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -577,18 +555,28 @@
 				DEVELOPMENT_TEAM = 9HLG8CJVW2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HappyBirthday/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Birthday;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This application needs permission to use your camera.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This application needs permission to save Photos to your library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This application saves Photos to your library.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 5.5;
 				PRODUCT_BUNDLE_IDENTIFIER = YY.HappyBirthday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -606,18 +594,28 @@
 				DEVELOPMENT_TEAM = 9HLG8CJVW2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HappyBirthday/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Birthday;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This application needs permission to use your camera.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This application needs permission to save Photos to your library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This application saves Photos to your library.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 5.5;
 				PRODUCT_BUNDLE_IDENTIFIER = YY.HappyBirthday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
