@@ -62,7 +62,7 @@ struct DetailsView: View {
 
     // MARK: - Birthdate picker
     private var birthDatePicker: some View {
-        let datePicker = DatePicker(Const.birthDatePlaceholder, selection: $viewModel.pickerDate, displayedComponents: .date)
+        let datePicker = DatePicker(Const.birthDatePlaceholder, selection: $viewModel.pickerDate, in: ...Date(), displayedComponents: .date)
             .font(.subheadline)
             .labelsHidden()
 

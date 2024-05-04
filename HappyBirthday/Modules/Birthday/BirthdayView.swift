@@ -25,20 +25,20 @@ struct BirthdayView: View {
                     Spacer(minLength: 20)
                     
                     avatarImage
-                        .frame(alignment: .center)
 
                     footerView
                 }
             }
             .frame(width: proxy.size.width)
-
+        }
+        .overlay(alignment: .topLeading) {
             backButton
                 .position(x: 16, y: 16)
         }
     }
     
     private var backgroundView: some View {
-        viewModel.theme.backgroundColor
+        viewModel.backgroundColor
             .ignoresSafeArea(.all)
     }
 
@@ -75,10 +75,19 @@ struct BirthdayView: View {
     }
 
     private var avatarImage: some View {
-        Button {
-            viewModel.onAvatarTapped()
-        } label: {
-            Image(viewModel.theme.avatarPlaceholderImagePath, bundle: nil)
+        VStack {
+            Spacer()
+
+            Button {
+                viewModel.onAvatarTapped()
+            } label: {
+                viewModel.avatarImage
+                    .frame(maxWidth: .some(225), maxHeight: .some(225), alignment: .center)
+                    .scaledToFit()
+            }
+            .clipShape(Circle())
+            
+            Spacer()
         }
     }
 
@@ -94,7 +103,7 @@ struct BirthdayView: View {
     }
 
     private var forgroundImage: some View {
-        Image(viewModel.theme.backgroundImagePath)
+        Image(viewModel.backgroundImagePath)
             .resizable()
             .aspectRatio(contentMode: .fill)
             .ignoresSafeArea(.all)
@@ -110,5 +119,6 @@ struct BirthdayView: View {
 }
 
 #Preview {
-    BirthdayView(viewModel: BirthdayViewModel(baby: Baby(name: "Cristiano Ronaldo Jr.")))
+    let vm = BirthdayViewModel(baby: Baby(birthDate: Date(), name: "Cristiano Ronaldo Jr."))
+    return BirthdayView(viewModel: vm)
 }

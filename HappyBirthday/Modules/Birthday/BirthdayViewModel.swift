@@ -9,17 +9,19 @@ import SwiftUI
 
 class BirthdayViewModel: ObservableObject  {
     let baby: Baby
-    let theme: BirthdayThemable = BirthdayTheme.green//BirthdayViewModel.randomTheme
-    var headerTopText: String { "Today \(baby.name) is" }
+    private let theme: BirthdayThemable = BirthdayViewModel.randomTheme
+    var headerTopText: String { "Today \(baby.name) is" + zeroMonthsHeaderTopTextHandler }
     var headerLeftImagePath: String { "swirls.left" }
-    var headerAgeImagePath: String { "0" }
+    var headerAgeImagePath: String { Self.numericImagePath(birthdayCalculation.amount) }
     var headerRightImagePath: String { "swirls.right" }
-    var headerBottomText: String { "Months old!" }
+    var headerBottomText: String { "\(birthdayCalculation.unit) old!" }
     var shareButtonColor: Color { Color(hex: "EF7B7B") }
     var shareButtonImagePath: String { "button.share" }
     var shareButtonText: String { "Share the news" }
     var logoImagePath: String { "logo.nanit" }
     var backButtonImagePath: String { "button.back" }
+    
+    @Environment(\.dismiss) private var dismiss
 
     func onShareTapped() {
     }
@@ -28,7 +30,23 @@ class BirthdayViewModel: ObservableObject  {
     }
 
     func onBackTapped() {
+        // yy_TODO: add back gesture
+        dismiss()
     }
+
+    var backgroundColor: Color { theme.backgroundColor }
+
+    var backgroundImagePath: String { theme.backgroundImagePath }
+    
+        /// yy_TODO: 1. unify bundle nil/.main, 2. replace Image with data avoid model knowing UI
+    var avatarImage: Image {
+        guard let image = baby.image else {
+            return Image(theme.avatarPlaceholderImagePath, bundle: nil)
+        }
+        return Image(uiImage: image)
+    }
+
+    var cameraImagePath: String { theme.cameraImagePath }
 
     init(baby: Baby) {
         self.baby = baby
@@ -36,23 +54,35 @@ class BirthdayViewModel: ObservableObject  {
 }
 
 private extension BirthdayViewModel {
-    var birthdayCalculation: (Int, unit: String) {
+    static func numericImagePath(_ number: Int) -> String {
+        guard (1...12).contains(number) else {
+            guard number == 0 else { return "" }
+            return "1"
+        }
+        return "\(number)"
+    }
+
+    var zeroMonthsHeaderTopTextHandler: String {
+        (birthdayCalculation.amount == 0) ? " almost" : ""
+    }
+
+    var birthdayCalculation: (amount: Int, unit: String) {
         guard let birthdate = baby.birthDate else { return (0, "") }
         let months = birthdate.monthsSinceNow()
 
         switch months {
             case 0:
-                return (0, unit: "MONTHS")
+                return (amount: 0, unit: "MONTH")
 
             case 1:
-                return (months, unit: "MONTH")
+                return (amount: months, unit: "MONTH")
 
             case 2...11:
-                return (months, unit: "MONTHS")
+                return (amount: months, unit: "MONTHS")
 
             default:
                 let years = months/12
-                return (years, unit: (years == 1) ? "YEAR": "YEARS")
+                return (amount: years, unit: (years == 1) ? "YEAR": "YEARS")
         }
     }
 
@@ -62,7 +92,6 @@ private extension BirthdayViewModel {
                 return .yellow
             case 1:
                 return .green
-//            case 2:
             default:
                 return .blue
 
