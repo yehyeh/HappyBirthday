@@ -14,25 +14,13 @@ struct BirthdayView: View {
 
     var body: some View {
         ZStack {
-            backgroundView
-
             avatarImage
-                .padding(.horizontal, 50)
-
             foregroundImage
-
-            VStack {
-                headerView
-                    .padding(.horizontal, 50)
-                Spacer()
-                footerView
-            }
-
+            headerView
+            footerView
             backButton
-                //yy_TODO: detect extra 20 insets
-                .position(x: 36, y:16)//16,16
         }
-        .safeAreaPadding(.all)
+        .background(viewModel.backgroundColor)
         .toolbar(.hidden)
         .sheet(isPresented: $viewModel.isPhotoPickerPresented) {
             AvatarPicker(sourceType: viewModel.imagePickerSource,
@@ -41,16 +29,13 @@ struct BirthdayView: View {
     }
 
     private var foregroundImage: some View {
-        Image(viewModel.foregroundImagePath)
-            .resizable()
-            .ignoresSafeArea(.all)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .aspectRatio(contentMode: .fill)
-    }
-
-    private var backgroundView: some View {
-        viewModel.backgroundColor
-            .ignoresSafeArea(.all)
+        GeometryReader(content: { geometry in
+            Image(viewModel.foregroundImagePath)
+                .resizable()
+                .ignoresSafeArea(.all)
+                .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
+                .aspectRatio(contentMode: .fill)
+        })
     }
 
     private var headerView: some View {
@@ -62,6 +47,8 @@ struct BirthdayView: View {
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
+                .padding(.horizontal, 56)
+                .padding(.top, 20)
 
             HStack(spacing: 22) {
                 Image(viewModel.headerLeftImagePath)
@@ -75,11 +62,13 @@ struct BirthdayView: View {
                 .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
                 .fontWeight(.medium)
                 .foregroundColor(Color(hex: "394562"))
+            Spacer()
         }
     }
 
     private var footerView: some View {
         VStack {
+            Spacer()
             logoImage
                 .padding(.top, 15)
                 .padding(.bottom, 53)
@@ -89,14 +78,17 @@ struct BirthdayView: View {
     }
 
     private var avatarImage: some View {
-        Button {
-            viewModel.onAvatarTapped()
-        } label: {
-            viewModel.avatarImage
-                .resizable()
-//                .scaledToFit()
-                .aspectRatio(contentMode: .fit)
-                .clipShape(Circle())
+        VStack {
+            Spacer(minLength: 262)
+            Button {
+                viewModel.onAvatarTapped()
+            } label: {
+                viewModel.avatarImage
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            }
+            .padding(.horizontal, 50)
+            Spacer(minLength: 200)
         }
     }
 
@@ -112,11 +104,17 @@ struct BirthdayView: View {
     }
 
     private var backButton: some View {
-        Button {
-            dismiss()
-        } label: {
-            Image(viewModel.backButtonImagePath, bundle: nil)
-        }
+        VStack {
+            HStack {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(viewModel.backButtonImagePath, bundle: nil)
+                }.padding(.leading, 16)
+                Spacer()
+            }
+            Spacer()
+        }.padding(.top ,16)
     }
 }
 
