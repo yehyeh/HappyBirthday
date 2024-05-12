@@ -92,7 +92,7 @@ struct BirthdayView: View {
             Button {
                 viewModel.onAvatarTapped()
             } label: {
-                viewModel.avatarImage
+                viewModel.avatarImage//bind
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             }
@@ -107,20 +107,18 @@ struct BirthdayView: View {
 
     private var shareButton: some View {
         let image = Image(uiImage: pickerImage) // YY_TODO: - ganarate screen snapshot
+//        viewModel.
         return ShareLink(item: image,
-                         preview: SharePreview("Happy Birthday App",
-                         image: image)) {
-            HStack(spacing: 8) {
-                Text(viewModel.shareButtonText)
-                Image(ImageResource(name: viewModel.shareButtonImagePath, bundle: .main))
-            }
-            .foregroundColor(Color.white)
-            .padding()
-            .background(Color(hex: "EF7B7B"), in: Capsule())
+                         subject: Text("Cool Photo"),
+                         message: Text("Check it out!"),
+                         preview: SharePreview("Happy Birthday App", image: image)) {
+            TrailingImageView(title: viewModel.shareButtonText, imageResource: ImageResource(name: viewModel.shareButtonImagePath, bundle: .main))
+                .background(Color(hex: "EF7B7B"), in: Capsule())
         }
     }
 
     private var backButton: some View {
+        //https://stackoverflow.com/questions/59921239/hide-navigation-bar-without-losing-swipe-back-gesture-in-swiftui
         VStack {
             HStack {
                 Button {

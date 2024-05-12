@@ -19,8 +19,6 @@ struct DetailsView: View {
     }
 
     var body: some View {
-        let _ = Self._printChanges()
-
         NavigationStack {
             VStack(alignment: .center, spacing: 24) {
 
@@ -37,10 +35,6 @@ struct DetailsView: View {
                 Spacer()
             }
             .navigationTitle(Const.title)
-            .sheet(isPresented: $viewModel.isPhotoPickerPresented) {
-                AvatarPicker(sourceType: viewModel.imagePickerSource,
-                             selectedImage: $viewModel.pickerImage)
-            }
         }
         .onAppear {
             viewModel.loadOnAppear()
@@ -65,7 +59,9 @@ struct DetailsView: View {
 
     // MARK: - Birthdate picker
     private var birthDatePicker: some View {
-        let datePicker = DatePicker(Const.birthDatePlaceholder, selection: $viewModel.pickerDate, in: ...Date(), displayedComponents: .date)
+        let datePicker = DatePicker(Const.birthDatePlaceholder,
+                                    selection: $viewModel.pickerDate,
+                                    in: ...Date(), displayedComponents: .date)
             .font(.subheadline)
             .labelsHidden()
 
@@ -87,6 +83,10 @@ struct DetailsView: View {
             Button("Take a Photo") {
                 viewModel.onCameraTapped()
             }
+        }
+        .sheet(isPresented: $viewModel.isPhotoPickerPresented) {
+            AvatarPicker(sourceType: viewModel.imagePickerSource,
+                         selectedImage: $viewModel.pickerImage)
         }
     }
 

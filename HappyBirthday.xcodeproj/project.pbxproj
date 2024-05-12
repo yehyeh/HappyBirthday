@@ -20,7 +20,7 @@
 		0DB2F1212BE5004500347F87 /* BirthdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2F1202BE5004500347F87 /* BirthdayView.swift */; };
 		0DB2F1232BE500F900347F87 /* BirthdayTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2F1222BE500F900347F87 /* BirthdayTheme.swift */; };
 		0DB2F1252BE501D900347F87 /* BirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2F1242BE501D900347F87 /* BirthdayViewModel.swift */; };
-		0DB2F1292BE528A800347F87 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2F1282BE528A800347F87 /* CapsuleButtonStyle.swift */; };
+		0DB2F1292BE528A800347F87 /* TrailingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2F1282BE528A800347F87 /* TrailingImageView.swift */; };
 		0DB2F12C2BE52A6900347F87 /* Color_Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2F12B2BE52A6900347F87 /* Color_Ex.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +59,7 @@
 		0DB2F1202BE5004500347F87 /* BirthdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayView.swift; sourceTree = "<group>"; };
 		0DB2F1222BE500F900347F87 /* BirthdayTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayTheme.swift; sourceTree = "<group>"; };
 		0DB2F1242BE501D900347F87 /* BirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewModel.swift; sourceTree = "<group>"; };
-		0DB2F1282BE528A800347F87 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
+		0DB2F1282BE528A800347F87 /* TrailingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailingImageView.swift; sourceTree = "<group>"; };
 		0DB2F12B2BE52A6900347F87 /* Color_Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color_Ex.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -225,18 +225,18 @@
 			path = Birthday;
 			sourceTree = "<group>";
 		};
-		0DB2F1262BE5285300347F87 /* Capsule Button */ = {
+		0DB2F1262BE5285300347F87 /* Trailing Image */ = {
 			isa = PBXGroup;
 			children = (
-				0DB2F1282BE528A800347F87 /* CapsuleButtonStyle.swift */,
+				0DB2F1282BE528A800347F87 /* TrailingImageView.swift */,
 			);
-			path = "Capsule Button";
+			path = "Trailing Image";
 			sourceTree = "<group>";
 		};
 		0DB2F1272BE5287B00347F87 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				0DB2F1262BE5285300347F87 /* Capsule Button */,
+				0DB2F1262BE5285300347F87 /* Trailing Image */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -384,7 +384,7 @@
 				0DB2F1212BE5004500347F87 /* BirthdayView.swift in Sources */,
 				0D8C8F0B2BDC7F2600CCD8D1 /* AvatarPicker.swift in Sources */,
 				0D12024E2BDAB7A3004F1746 /* HappyBirthdayApp.swift in Sources */,
-				0DB2F1292BE528A800347F87 /* CapsuleButtonStyle.swift in Sources */,
+				0DB2F1292BE528A800347F87 /* TrailingImageView.swift in Sources */,
 				0D8C8F0F2BDD452000CCD8D1 /* DetailViewModel.swift in Sources */,
 				0DB2F1252BE501D900347F87 /* BirthdayViewModel.swift in Sources */,
 				0D8C8F0D2BDC915D00CCD8D1 /* Baby.swift in Sources */,
