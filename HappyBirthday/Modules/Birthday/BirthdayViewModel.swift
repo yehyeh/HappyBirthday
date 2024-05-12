@@ -7,9 +7,22 @@
 
 import SwiftUI
 
-class BirthdayViewModel: ObservableObject  {
+class BirthdayViewModel: ObservableObject {
+    enum SheetState {
+        case photoPicker(source: UIImagePickerController.SourceType)
+        case share
+    }
+
+    @Published var isPresentingSheet: Bool = false
+    @Published var presentingView: SheetState? {
+        willSet {
+            isPresentingSheet = newValue != nil
+        }
+    }
+
     private let theme: BirthdayThemable = BirthdayViewModel.randomTheme
     private(set) var imagePickerSource: UIImagePickerController.SourceType = .photoLibrary
+    
     let baby: Baby
     var headerTopText: String { "Today \(baby.name) is" + zeroMonthsHeaderTopTextHandler }
     var headerLeftImagePath: String { "swirls.left" }
@@ -22,17 +35,16 @@ class BirthdayViewModel: ObservableObject  {
     var logoImagePath: String { "logo.nanit" }
     var backButtonImagePath: String { "button.back" }
 
-    // yy_TODO: enums:
-    @Published var isPhotoPickerPresented: Bool = false
-    @Published var isShareViewPresented: Bool = false
-
     func onShareTapped() {
-        isShareViewPresented = true
+        presentingView = .share
     }
 
     func onAvatarTapped() {
-        imagePickerSource = .photoLibrary
-        isPhotoPickerPresented = true
+        presentingView = .photoPicker(source: .photoLibrary)
+    }
+
+    func onCameraTapped() {
+        presentingView = .photoPicker(source: .camera)
     }
 
     var backgroundColor: Color { theme.backgroundColor }

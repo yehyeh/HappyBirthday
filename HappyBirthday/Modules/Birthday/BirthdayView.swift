@@ -22,9 +22,14 @@ struct BirthdayView: View {
         }
         .background(viewModel.backgroundColor)
         .toolbar(.hidden)
-        .sheet(isPresented: $viewModel.isPhotoPickerPresented) {
-            AvatarPicker(sourceType: viewModel.imagePickerSource,
-                         selectedImage: $pickerImage)
+        .sheet(isPresented: $viewModel.isPresentingSheet) {
+            switch viewModel.presentingView {
+                case .photoPicker(let source):
+                    AvatarPicker(sourceType: source,
+                                 selectedImage: $pickerImage)
+                default:
+                    Text("L:")
+            }
         }
     }
 
@@ -35,6 +40,7 @@ struct BirthdayView: View {
                 .ignoresSafeArea(.all)
                 .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
                 .aspectRatio(contentMode: .fill)
+                .allowsHitTesting(false)
         })
     }
 
@@ -64,14 +70,17 @@ struct BirthdayView: View {
                 .foregroundColor(Color(hex: "394562"))
             Spacer()
         }
+        .allowsHitTesting(false)
     }
 
     private var footerView: some View {
         VStack {
             Spacer()
+                .allowsHitTesting(false)
             logoImage
                 .padding(.top, 15)
                 .padding(.bottom, 53)
+                .allowsHitTesting(false)
             shareButton
                 .padding(.bottom, 53)
         }
@@ -97,9 +106,17 @@ struct BirthdayView: View {
     }
 
     private var shareButton: some View {
-        TrailingImageButton(title: viewModel.shareButtonText,
-                            imageResource: ImageResource(name: viewModel.shareButtonImagePath, bundle: .main)) {
-            viewModel.onShareTapped()
+        let image = Image(uiImage: pickerImage) // YY_TODO: - ganarate screen snapshot
+        return ShareLink(item: image,
+                         preview: SharePreview("Happy Birthday App",
+                         image: image)) {
+            HStack(spacing: 8) {
+                Text(viewModel.shareButtonText)
+                Image(ImageResource(name: viewModel.shareButtonImagePath, bundle: .main))
+            }
+            .foregroundColor(Color.white)
+            .padding()
+            .background(Color(hex: "EF7B7B"), in: Capsule())
         }
     }
 
@@ -110,11 +127,17 @@ struct BirthdayView: View {
                     dismiss()
                 } label: {
                     Image(viewModel.backButtonImagePath, bundle: nil)
-                }.padding(.leading, 16)
+                }
+                .padding(.leading, 16)
+
                 Spacer()
+                    .allowsHitTesting(false)
             }
+
             Spacer()
-        }.padding(.top ,16)
+                .allowsHitTesting(false)
+        }
+        .padding(.top ,16)
     }
 }
 
